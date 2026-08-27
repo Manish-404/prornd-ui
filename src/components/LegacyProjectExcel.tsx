@@ -20,6 +20,7 @@ export interface LegacyMapping {
     old_project_number: string;
     old_project_title: string;
     old_pi_name: string;
+    old_pi_email: string;
     old_status: string;
     match_method: string;
     title_similarity: number;
@@ -180,8 +181,17 @@ const LegacyProjectExcel: React.FC<{ docname: string }> = ({ docname }) => {
                 </div>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
                     <DetailItem label="Old Project Number" value={mapping?.old_project_number} />
-                    <DetailItem label="Old PI" value={mapping?.old_pi_name} />
-                    <DetailItem label="Old Status" value={mapping?.old_status} />
+                    <DetailItem
+                        label="PI - Email (Name)"
+                        value={
+                            mapping?.old_pi_name
+                                ? mapping.old_pi_email
+                                    ? `${mapping.old_pi_name} (${mapping.old_pi_email})`
+                                    : mapping.old_pi_name
+                                : undefined
+                        }
+                    />
+                    <DetailItem label="Status" value={mapping?.old_status} />
                     <DetailItem
                         label="Match Confidence"
                         value={
@@ -291,7 +301,7 @@ const LegacyProjectExcel: React.FC<{ docname: string }> = ({ docname }) => {
                                                 key={rowIndex}
                                                 className={cn(
                                                     rowIndex % 2 === 1 &&
-                                                        "bg-[#FAFAF9] dark:bg-[#27272A]/50",
+                                                    "bg-[#FAFAF9] dark:bg-[#27272A]/50",
                                                 )}
                                             >
                                                 <td className="sticky left-0 z-10 w-10 border border-[#E4E4E7] bg-[#F4F4F5] px-1.5 py-1 text-center text-[10px] font-bold text-[#A1A1AA] dark:border-[#3F3F46] dark:bg-[#27272A]">
