@@ -25,6 +25,12 @@ dist-ssr
 
 proxyOptions.ts
 
+# Local bench config, copied in to satisfy proxyOptions.ts's require() —
+# machine-specific, not part of the frontend source.
+common_site_config.json
+
 # Derived at build/dev time by scripts/git-leaderboard.cjs — regenerated
 # fresh on every run, only used as a fallback when git itself is unavailable.
 .leaderboard-cache.json
+common_site_config copy.json
+run-dev.cmd
